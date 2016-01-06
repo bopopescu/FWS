@@ -1,0 +1,27 @@
+{% if name %}
+	Hello,{{name}}!
+{% else %}
+	Hello,Stranger!
+{%endif%}	
+
+
+
+
+
+
+
+<br><br/>
+
+
+{% macro render_comment(comment) %}
+	<li align="center">{{comment}}<li/>
+{% endmarco %}
+
+
+<u1>
+	{% for i in range(0,10) %}
+	<br><br/>
+	{{render_comment(i)}}
+	{% endfor %}
+<u1/>	
+
