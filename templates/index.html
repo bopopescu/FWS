@@ -1,6 +1,16 @@
 
 
-<h1 align="center" textcolor="red"> this is waynezxcv's page <h1/>
-	<br><br/>
-	<img src="//www.baidu.com/img/baidu_jgylogo3.gif" alt="到百度首页" title="到百度首页" target="http://www.baidu.com">
-	<img/>
+{% extends "bootstrap/base.html" %}
+{% block title %}This is an example page{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-fixed-top">
+  <!-- ... -->
+</div>
+{% endblock %}
+
+{% block content %}
+  <h1>Hello, Bootstrap</h1>
+{% endblock %}
+
+
