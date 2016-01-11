@@ -25,7 +25,7 @@ db = SQLAlchemy(app)
 
 
 
-# manager = Manager(app)
+manager = Manager(app)
 bootstrap = Bootstrap(app)
 moment = Moment()
 
