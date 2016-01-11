@@ -5,7 +5,7 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config(object):
-	SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
+	SECRET_KEY = os.environ.get('SECRET_KEY') or 'this is waynezxcvs secretkey'
 	SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 	WAYNEZXCV_ADMIN = os.environ.get('WAYNEZXCV_ADMIN')
 	
@@ -13,23 +13,22 @@ class Config(object):
 	def init_app(app):
 		pass
 
-
+#开发环境
 class DevelopmentConfig(Config):
 	DEBUG = True
 	SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or 'mysql://root:@localhost/test'
-	
 
-
+#测试环境
 class TestingConfig(Config):
 	TESTING = True
 	SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or 'mysql://root:@localhost/test'
 
+#生产环境
 class ProductionConfig(Config):
 	SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'mysql://root:@localhost/test'
 
 
-
-confi = {
+config = {
 	'development':DevelopmentConfig,
 	'testing':TestingConfig,
 	'production':ProductionConfig,
