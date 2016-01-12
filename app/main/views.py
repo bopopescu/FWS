@@ -7,13 +7,14 @@
 
 from datetime import datetime
 from flask import render_template,session,redirect,url_for
-from __init__ import main
-from forms import PostForm
+from main.__init__ import main
+# from forms import PostForm
 
 
 @main.route('/',methods = ['GET','POST'])
 def index():
-	name = None
+	return render_template('index.html'),200
 
-
-
+@main.route('/user/<name>')
+def user(name):
+	return render_template('user.html',name = name),200

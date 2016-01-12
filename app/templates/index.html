@@ -1,16 +1,10 @@
 
 {% extends "base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
-
-
 
 {%block title %} Waynezxcv' Blog {% endblock %}
 
-
 {% block page_content %}
 <div class = "page-header">
-	<h1  content="text/html; charset=utf-8" >Hi!{% if name %} {{name}} ,{% else %} {% endif %} 欢迎来到Waynezxcv的博客 ! </h1>
+	<h1  content="text/html; charset=utf-8" > 欢迎来到Waynezxcv的博客 ! </h1>
 </div>
-
-{{ wtf.quick_form(form)}}
 {% endblock %}
