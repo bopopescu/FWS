@@ -7,11 +7,13 @@ from flask.ext.moment import Moment
 from flask.ext.sqlalchemy import SQLAlchemy 
 from config import config
 
-
-
+#初始化bootstrap
 bootstrap = Bootstrap()
+#初始化Mail
 mail = Mail()
+#初始化Moment
 moment = Moment()
+#初始化SQLAlchemy
 db = SQLAlchemy()
 
 #工厂方法创建程序实例
