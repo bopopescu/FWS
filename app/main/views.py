@@ -7,12 +7,12 @@
 
 from datetime import datetime
 from flask import render_template,session,redirect,url_for
-
-
 from main.__init__ import main
+
+
 # from main.forms import NameForm
 # from .. import db
-# from .. models import User
+# from ..models import User,Role
 
 
 @main.route('/',methods = ['GET','POST'])
