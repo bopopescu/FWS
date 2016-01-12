@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#! /usr/bin/env python
 
 
 #蓝本中定义程序路由
@@ -8,13 +9,13 @@ from datetime import datetime
 from flask import render_template,session,redirect,url_for
 
 
-from . import main
-from .forms import NameForm
-from .. import db
-from .. models import User
+from main.__init__ import main
+# from main.forms import NameForm
+# from .. import db
+# from .. models import User
 
 
-@main.route('/',methods = ['GET','POST')
+@main.route('/',methods = ['GET','POST'])
 def index():
 	name = None
 	form = NameForm()

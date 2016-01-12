@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask
+from flask import Flask,render_template
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.mail import Mail
 from flask.ext.moment import Moment 
@@ -8,16 +8,16 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from config import config
 
 
+
 bootstrap = Bootstrap()
 mail = Mail()
 moment = Moment()
-db = SQLALchemy()
-
+db = SQLAlchemy()
 
 #工厂方法创建程序实例
 def create_app(config_name):
 	app = Flask(__name__)
-	app.config.from_object(cofig[config_name])
+	app.config.from_object(config[config_name])
 	config[config_name].init_app(app)
 	bootstrap.init_app(app)
 	mail.init_app(app)
@@ -25,7 +25,6 @@ def create_app(config_name):
 	db.init_app(app)
 
 	#路由和自定义的错误页面处理
-	from .main import main as main_blueprint
+	from main.__init__ import main as main_blueprint
 	app.register_blueprint(main_blueprint)
-
 	return app
