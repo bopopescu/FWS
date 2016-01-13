@@ -32,4 +32,3 @@ def index():
 							known=session.get('known',False),
 							current_time=datetime.utcnow())
 
-
