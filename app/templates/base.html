@@ -25,23 +25,19 @@
 					<span class = "icon-bar"></span>
 					<span class = "icon-bar"></span>
 			</button>
-			<a class = "navbar-brand" href="/">Waynezxcv</a>
+			<a class = "navbar-brand" href="/">Waynezxcv的博客</a>
  		</div>
 	<div class="navbar-collapse collapse">
 		<u1 class="nav navbar-nav">
-			<li><a href="/">博客</a></li>
-		</u1>
+<!-- 			<li><a href="/">博客</a></li>
+ -->		</u1>
 	</div>
 </div>
 </div>
 
-<u1 class = "nav navbar-nav navbar-right">
-	{% if current_user.is_authenticated() %}
-	<li> <a href = {{ url_for('auth.logout') }}> 登出 </a></li>
-	{% else %}
-	<li> <a href = {{ url_for('auth.login') }}> 登录 </a></li>
-	{% endif %}
-</u1>
+
+
+
 {% endblock %}
 
 {% block content %}
