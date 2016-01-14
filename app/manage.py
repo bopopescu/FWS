@@ -13,7 +13,6 @@ from flask.ext.migrate import Migrate,MigrateCommand
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)
-
 migrate = Migrate(app,db)
 
 
@@ -23,8 +22,6 @@ def make_shell_context():
 
 
 #添加shell命令
-
-
 manager.add_command("shell",Shell(make_context = make_shell_context))
 manager.add_command('db',MigrateCommand)
 

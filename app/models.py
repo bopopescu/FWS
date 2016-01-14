@@ -16,8 +16,6 @@ def load_user(user_id):
 
 
 
-
-
 class Role(db.Model):
 	__tablename__ = 'roles'
 	id = db.Column(db.Integer,primary_key = True)
@@ -50,10 +48,10 @@ class User(UserMixin,db.Model):
 		return check_password_hash(self.password_hash,password)
 
 	#实现flask-login的方法或者集成Usermixin类
-
 	def __repr__(self):
 		return self.username
-		
+
+
 
 #文章模型
 class Post(db.Model):
