@@ -4,6 +4,18 @@
 from __init__ import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash,check_password_hash
+from flask.ext.login import UserMixin
+from __init__ import login_manager
+
+
+
+#加载用户回调函数
+@login_manager.user_loader
+def load_user(user_id):
+	return User.query.get(int(user_id))
+
+
+
 
 
 class Role(db.Model):
@@ -18,7 +30,7 @@ class Role(db.Model):
 		return self.name
 
 
-class User(db.Model):
+class User(UserMixin,db.Model):
 	__tablename__ = 'users'
 	id = db.Column(db.Integer,primary_key = True)
 	username = db.Column(db.String(64),unique = True,index = True)
@@ -36,6 +48,8 @@ class User(db.Model):
 		
 	def verify_password(self,password):
 		return check_password_hash(self.password_hash,password)
+
+	#实现flask-login的方法或者集成Usermixin类
 
 	def __repr__(self):
 		return self.username

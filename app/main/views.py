@@ -9,6 +9,9 @@ from datetime import datetime
 from flask import render_template,session,redirect,url_for
 from main.__init__ import main
 # from forms import PostForm
+from flask.ext.login import login_required
+
+
 
 @main.route('/',methods = ['GET','POST'])
 def index():

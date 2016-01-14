@@ -11,7 +11,7 @@ class Config(object):
 	
 	@staticmethod
 	def init_app(app):
-		pass
+		print 'init config'
 
 #开发环境
 class DevelopmentConfig(Config):
