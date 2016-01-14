@@ -7,11 +7,13 @@ from flask.ext.moment import Moment
 from flask.ext.sqlalchemy import SQLAlchemy 
 from config import config
 
-
-
+#初始化bootstrap
 bootstrap = Bootstrap()
+#初始化Mail
 mail = Mail()
+#初始化Moment
 moment = Moment()
+#初始化SQLAlchemy
 db = SQLAlchemy()
 
 #工厂方法创建程序实例
@@ -27,4 +29,7 @@ def create_app(config_name):
 	#路由和自定义的错误页面处理
 	from main.__init__ import main as main_blueprint
 	app.register_blueprint(main_blueprint)
+
+	from auth.__init__ import auth as auth_blueprint
+	app.register_blueprint(auth_blueprint)
 	return app

@@ -7,13 +7,8 @@
 
 from datetime import datetime
 from flask import render_template,session,redirect,url_for
-
-
 from main.__init__ import main
-# from main.forms import NameForm
-# from .. import db
-# from .. models import User
-
+# from forms import PostForm
 
 @main.route('/',methods = ['GET','POST'])
 def index():
@@ -32,3 +27,11 @@ def index():
 							known=session.get('known',False),
 							current_time=datetime.utcnow())
 
+	return render_template('index.html'),200
+
+
+
+
+@main.route('/user/<name>')
+def user(name):
+	return render_template('user.html',name = name),200
