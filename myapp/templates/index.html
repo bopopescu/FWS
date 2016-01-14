@@ -1,10 +1,49 @@
 
 {% extends "base.html" %}
 
-{%block title %} Waynezxcv' Blog {% endblock %}
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}
+
+
+{%block title %} Waynezxcv的博客 {% endblock %}
 
 {% block page_content %}
 <div class = "page-header">
 	<h1  content="text/html; charset=utf-8" > 欢迎来到Waynezxcv的博客 ! </h1>
 </div>
+
+
+<div class = "mainbody">
+
+{% for post in posts %}
+
+
+<article>
+  <header>
+      <h2 class="entry-title" ><font color="black">{{ post.title }} </font> </h2>
+      <div>
+		 <li> <font color="blue" > {{ moment(post.timestamp).format('LLL') }} </font> </li>
+		 <br>
+		</div>
+  </header>
+  <div class="entry-content"><p> <font color="gray">{{ post.body }} </font> </p></div>
+</article>
+
+<hr>
+
+
+{% endfor %}
+
+
+
+</div>
+
+
+<div class="footer">
+      <a class="prev" href="/blog/page/2/"></a>
+    <a href="/blog/archives">关于Waynezxcv</a>
+  </div>
+
 {% endblock %}

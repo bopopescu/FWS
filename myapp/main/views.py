@@ -9,12 +9,14 @@ from datetime import datetime
 from flask import render_template,session,redirect,url_for
 from main import main
 from flask.ext.login import login_required
+from models import Post
 
 
 
 @main.route('/',methods = ['GET','POST'])
 def index():
-	return render_template('index.html'),200
+	posts = Post.query.order_by(Post.timestamp.desc()).all()
+	return render_template('index.html',posts = posts),200
 
 
 

@@ -10,7 +10,7 @@ from models import Post
 def post():
 	form = Postform()
 	if form.validate_on_submit():
-		post = Post(title = u'手动插入'.encode('utf-8'),body = u'手动插入'.encode('utf-8'))
+		post = Post(title = form.title.data.encode('utf-8'),body = form.body.data.encode('utf-8'))
 		post.savePost()
-		return post.title
+		return render_template('admin/sucess.html'),200
 	return render_template('admin/post.html',form = form),200
