@@ -15,25 +15,23 @@ def load_user(user_id):
 	return User.query.get(int(user_id))
 
 
-
 class Role(db.Model):
 	__tablename__ = 'roles'
 	id = db.Column(db.Integer,primary_key = True)
 	name = db.Column(db.String(64),unique = True)
 	#第一个参数：关系的另一端是哪个模型
 	#第二个参数：backref向User模型中添加一个role属性
-	users = db.relationship('User',backref = 'role')
+	# users = db.relationship('User',backref = 'role')
 
 	def __repr__(self):
 		return self.name
 
-
 class User(UserMixin,db.Model):
-	__tablename__ = 'users'
+	__tablename__ = 'user'
 	id = db.Column(db.Integer,primary_key = True)
 	username = db.Column(db.String(64),unique = True,index = True)
-	role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
-	posts = db.relationship('Post',backref = 'author',lazy = 'dynamic')
+	# role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+	# posts = db.relationship('Post',backref = 'author',lazy = 'dynamic')
 	password_hash = db.Column(db.String(128))
 
 	@property
@@ -60,7 +58,8 @@ class Post(db.Model):
 	id = db.Column(db.Integer,primary_key = True)
 	body = db.Column(db.Text)
 	timestamp = db.Column(db.DateTime,index = True,default = datetime.utcnow())
-	author_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+	# author_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+	
 	def __repr__(self):
 		return self
 
