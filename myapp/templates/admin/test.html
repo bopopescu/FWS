@@ -1,119 +1,20 @@
-<html><head>
-
-    <title> Waynezxcv的博客</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-<link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/static/favicon.ico" type="image/x-icon">
-
-  <style>.pkt_added {text-decoration:none !important;}</style></head>
-  <body>
-    
-<div class="navbar navbar-inverse" role="navigation">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=". navbar-collapse">
-				<span class="sr-only">Toggle navigation
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-			</span></button>
-			<a class="navbar-brand" href="/">Waynezxcv的博客</a>
- 		</div>
-	<div class="navbar-collapse collapse">
-		<u1 class="nav navbar-nav">
-			<li><a href="https://github.com/waynezxcv" target="blank"> 我的GitHub </a></li>
-			<li><a href="http://weibo.com/p/1005052548524602/home?from=page_100505&amp;mod=TAB&amp;is_all=1#place" target="blank"> 我的微博 </a></li>
-		</u1>
-	</div>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>完整demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="//cdn.ckeditor.com/4.4.6/standard/ckeditor.js"></script>
+</head>
+<body>
+<div>
+    <h1>完整demo</h1>
+    <textarea id="content" class="ckeditor">编辑</textarea>
 </div>
 
-
-
-
-
-    
-<div class="container">
-	
-
-<div class="body">
-
-<div class="page-header">
-	<h1 content="text/html; charset=utf-8"> 发布文章 </h1>
-</div>
-
-<div class="col-md-4">
-
-
- <!--引入wangEditor.css-->
-
-<link rel="stylesheet" type="text/css" href="css/wangEditor-1.3.10.css">
-<!--引入jquery和wangEditor.js-->   <!--注意：javascript必须放在body最后，否则可能会出现问题-->
-<script type="text/javascript" src='js/jquery-1.10.2.min.js'></script>
-<script type="text/javascript" src='js/wangEditor-1.3.10.min.js'></script>
-
-
-<!--创建一个 textarea 标签-->
-<textarea id='textarea1' style='height:300px; width:100%;'>
-
-
-</textarea>
-
-
-</div>
-
-
-
-</div>
-
-
-    
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-
-    <!--注意：javascript必须放在body最后，否则可能会出现问题-->
 <script type="text/javascript">
-    $(function(){ 
-    	var editor = $('#textarea1').wangEditor({
-    'menuConfig': [
-        ['fontFamily','bold','setHead'],
-        ['list','justify'],
-        ['createLink','insertHr','undo']
-    ]
+CKEDITOR.replace('content', {
+	filebrowserUploadUrl: '/ckupload/',
 });
-    });
-  
-
-</div>
-
-
 </script>
-
-</body></html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ……省略其他内容……
- -->
-
-
-
-<!-- </div>
- -->
-
+</body>
+</html>

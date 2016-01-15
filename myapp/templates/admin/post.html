@@ -13,9 +13,38 @@
 	<h1  content="text/html; charset=utf-8" > 发布文章 </h1>
 </div>
 
-<div class = "col-md-4">
+
+
+
+
+<head>
+	<title>A Simple Page with CKEditor</title>
+        <script src="{{ url_for('static', filename='ckeditor/ckeditor.js') }}"></script>
+</head>
+
+
+
+<body>
+	<form>
+		<textarea name="editor1" id="editor1" class="ckeditor" rows="10" cols="160"> {{ form.body }}</textarea>
+	</form>
+</body>
+
+<body>
+
+
+</body>
+
+<!-- <div class = "col-md-4">
 	{{ wtf.quick_form(form) }}
 </div>
-
+ -->
 
 {% endblock %}
+
+
+<!-- <form method="POST" action="/">
+    {{ form.hidden_tag() }}
+    {{ form.submit.label }} {{ form.submit(size=20) }}
+    <input type="submit" value="Go">
+</form> -->
