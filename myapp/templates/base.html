@@ -8,8 +8,16 @@
 
 {% block head %}
 {{ super() }}
+
+<!-- 地址栏小图标 -->
 <link rel="shortcut icon" href="{{ url_for('static',filename='favicon.ico')}}" type = "image/x-icon">
 <link rel = "icon" href = "{{ url_for('static',filename='favicon.ico')}}" type = "image/x-icon">
+
+<!-- 代码高亮插件 -->
+<link rel="stylesheet" href="  {{url_for('static',filename = 'highlight/styles/default.css')}} ">
+<script src=" {{url_for('static',filename = 'highlight/highlight.pack.js')}} "></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 {% endblock %}
 
 {%block title %} Waynezxcv的博客 {% endblock %}
