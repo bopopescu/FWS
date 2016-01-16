@@ -8,10 +8,11 @@ from wtforms import StringField,TextAreaField,SubmitField
 from  wtforms.validators import Required,Length
 
 
-#管理员登录表单
 class Postform(Form):
-	title = StringField(u'标题')
+	title = StringField(u'标题',validators = [Required()])
 	body = TextAreaField(u'内容',validators = [Required()])
+	tag = StringField(u'标签',validators = [Required()])
+	cover = StringField(u'封面')
 	submit = SubmitField(u'发布')
 
 

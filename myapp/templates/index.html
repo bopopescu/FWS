@@ -6,7 +6,6 @@
 {{ moment.include_moment() }}
 {% endblock %}
 
-
 {%block title %} Waynezxcv的博客 {% endblock %}
 
 {% block page_content %}
@@ -66,11 +65,11 @@ img.emoji {
    </div> 
    <nav id="site-navigation" class="main-navigation" role="navigation"> 
     <div class="menu-primary-menu-container">
-<!--      <ul id="primary-menu" class="menu">
-      <li id="menu-item-10" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-10"><a href="http://demo.20theme.com/hacker/">最新</a></li> 
-      <li id="menu-item-28" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="http://demo.20theme.com/hacker/tags">标签</a></li> 
-      <li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="http://demo.20theme.com/hacker/about">关于</a></li> 
-     </ul> -->
+     <ul id="primary-menu" class="menu">
+      <li id="menu-item-10" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-10"><a href="http://demo.20theme.com/hacker/">博客</a></li> 
+      <li id="menu-item-28" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href=" {{ url_for('main.tags') }}">标签</a></li> 
+      <li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href=" {{ url_for( 'main.about' ) }}">关于</a></li> 
+     </ul>
     </div> 
    </nav> 
    <!-- END #site-navigation --> 
@@ -90,15 +89,14 @@ img.emoji {
 
        <!-- 日期 -->
        <div class="Article__top-meta"> 
-<!--         <span class="posted-on"><a href="" rel="bookmark"><time class="entry-date published" datetime="2015-12-25T19:32:12+00:00"> 2016年1月16日 </time></a></span>  -->
+        <span><a><time> {{ post.timestamp }} </time></a></span> 
        </div> 
 
 
        <!-- 图片 -->
-
-       {% if post.img %}
+       {% if post.cover %}
        <div class="featured-media"> 
-        <img width="700" height="359" src="http://demo.20theme.com/hacker/wp-content/uploads/sites/8/2015/12/dasheng.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="dasheng" srcset="http://demo.20theme.com/hacker/wp-content/uploads/sites/8/2015/12/dasheng-300x154.jpg 300w, http://demo.20theme.com/hacker/wp-content/uploads/sites/8/2015/12/dasheng-768x394.jpg 768w, http://demo.20theme.com/hacker/wp-content/uploads/sites/8/2015/12/dasheng-1024x525.jpg 1024w, http://demo.20theme.com/hacker/wp-content/uploads/sites/8/2015/12/dasheng.jpg 1920w" sizes="(max-width: 720px) calc(100vw - 20px), 700px" /> 
+        <img width="700" height="359" src="{{post.cover}}" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt= "封面" srcset="" sizes="(max-width: 720px) calc(100vw - 20px), 700px" /> 
        </div> 
        <!-- END .featured-media --> 
        {% endif %}
@@ -106,7 +104,7 @@ img.emoji {
 
        <!-- 正文 -->
        <div class="Article__excerpt"> 
-          {{ post.body|safe }}
+          {{ post.summary |safe }}
        </div> 
        <!-- END .Article__excerpt --> 
 
@@ -114,40 +112,43 @@ img.emoji {
        <footer class="Article__footer"> 
         <div class="Article__meta pull-left"> 
           <!-- 标签 -->
-         <span class="post-tags"><i class="icon-tags"></i><a href="http://demo.20theme.com/hacker/archives/tag/%e7%94%b5%e5%bd%b1" rel="tag"> {{ post.tag }}</a></span> 
+         <span class="post-tags"><i class="icon-tags"></i><a href="/tagname/{{post.tag.name}}" rel="tag"> {{ post.tag.name }}</a></span> 
         </div> 
 
 
         <!-- END .pull-left --> 
         <div class="Article__meta pull-right"> 
-         <span><a href="#" class="js-rating" data-post="62"><i class="icon-heart"></i><span class="js-count">37</span></a></span>
-         <span><i class="icon-comments"></i><span><a href="http://demo.20theme.com/hacker/archives/62#respond">暂无评论</a></span></span> 
+          <!-- 点赞 -->
+         <span><a href="#" class="js-rating" data-post="62"><i class="icon-heart"></i><span class="js-count"> {{ post.like }}</span></a></span>
+         <!-- 评论 -->
+         <span><i class="icon-comments"></i><span><a href="http://demo.20theme.com/hacker/archives/62#respond"> {{ post.comment }}</a></span></span> 
         </div> 
         <!-- END .pull-right --> 
        </footer> 
        <!-- END .Article__footer --> 
       </article> 
       <!-- END .Article -->
-
-
       {% endfor %}
 
 
-
-
-
+<!-- 分页 -->
      </main> 
      <!-- END #main --> 
      <nav class="Pagination"> 
-      <a href="http://demo.20theme.com/hacker/page/2" class="Pagination__next">下一页→</a> 
+      {% if pagination.has_prev %}
+      <a href="{{ url_for('main.index',page = pagination.page - 1) }}" class="Pagination__next">上一页</a> 
+      {% endif %}
+
+      {% if pagination.has_next %}
+      <a href="{{ url_for('main.index',page = pagination.page + 1) }}" class="Pagination__next">下一页</a> 
+      {% endif %}
      </nav> 
      <!-- END .Pagination --> 
     </div> 
     <!-- END #content --> 
     <footer id="colophon" class="site-footer" role="contentinfo"> 
      <div class="site-info"> 
-      <p class="meta"> Proudly powered by <a href="https://wordpress.org/" target="_blank">WordPress</a> </p> 
-      <p class="meta"> Theme by <a href="http://www.liuxinyu.me/" target="_blank">moyu</a> </p> 
+      <p class="meta">Copyright © 2016年 Waynezxcv. All rights reserved.</p> 
      </div> 
      <!-- END .site-info --> 
     </footer> 
