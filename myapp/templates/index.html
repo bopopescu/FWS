@@ -28,7 +28,9 @@
 		 <br>
 		</div>
   </header>
-  <div class="entry-content"><p> <font color="gray">{{ post.body }} </font> </p></div>
+  <div class="entry-content"><p> <font color="gray">{{ post.body|safe }} </font> </p></div>
+<br>
+
 </article>
 
 <hr>
@@ -39,7 +41,6 @@
 
 
 </div>
-
 
 <div class="footer">
       <a class="prev" href="/blog/page/2/"></a>

@@ -18,10 +18,10 @@ moment = Moment()
 #初始化SQLAlchemy
 db = SQLAlchemy()
 
-
 #初始化FlaksLoginManager
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
+#在login——required页面，跳转到此
 login_manager.login_view = 'auth.login'
 
 

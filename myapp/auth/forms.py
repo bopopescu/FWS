@@ -16,3 +16,8 @@ class AdminLoginForm(Form):
 	submit = SubmitField(u'登录')
 
 
+class AdminSign(Form):
+	username = StringField(u'用户名',validators = [Required()])
+	password = PasswordField(u'密码',validators = [Required()])
+	submit = SubmitField(u'注册')
+		

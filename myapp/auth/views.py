@@ -3,9 +3,18 @@
 
 from flask import render_template,redirect,url_for
 from auth import auth
-from forms import AdminLoginForm
+from forms import AdminLoginForm,AdminSign
 from models import User,Role,Post
-from flask.ext.login import logout_user,login_required
+from flask.ext.login import logout_user,login_required,login_user
+
+@auth.route('/signup',methods = ['GET','POST'])
+def signup():
+	form = AdminSign()
+	if form.validate_on_submit():
+		user = User(username = form.username.data,password = form.password.data)
+		user.saveUser()
+		return redirect(url_for('auth.login')),200
+	return render_template('auth/signup.html',form = form),200
 
 
 @auth.route('/login',methods = ['GET','POST'])
@@ -16,9 +25,10 @@ def login():
 		user = User.query.filter_by(username = form.username.data).first()
 		if user is not None and user.verify_password(form.password.data):
 			#成功
-			login_user = (user,form.remember_me.data)
+			login_user(user,form.remember_me.data)
 			return redirect(url_for('admin.post'))
 	return render_template('auth/login.html',form = form),200
+
 
 
 @auth.route('/logout',methods = ['GET','POST'])
