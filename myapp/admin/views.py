@@ -14,4 +14,5 @@ def post():
 		post.savePost()
 		print form.title.data,form.body.data
 		return render_template('admin/sucess.html'),200
+	print '发布失败。。。',form.body.data	
 	return render_template('admin/post.html',form = form),200
