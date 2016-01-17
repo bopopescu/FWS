@@ -25,9 +25,9 @@
     <u1 class = "nav navbar-nav navbar-right">
       {% if current_user.is_authenticated  %}
         <li> <a href = " {{ url_for('auth.logout') }}"> hi,{{ current_user }} </a></li>
-        <li> <a href = " {{ url_for('admin.post') }}"> 发布文章 </a></li>
+    <li> <a href = " {{ url_for('admin.post') }}"> 发布文章 </a></li>
       {% else %}
-        <li> <a href = " {{ url_for('auth.login') }}"> 登录 </a></li>
+    <li> <a href = " {{ url_for('auth.login') }}"> 登录 </a></li>
       {% endif %} 
     </u1>
   </div>
@@ -45,7 +45,7 @@
 {% endfor %}
 
 
-<!-- 分页 -->
+<!-- 分页
 </main> 
      {{ macros.render_pagination('main.index',pagination) }}
 </div> 

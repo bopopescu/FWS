@@ -35,14 +35,6 @@
 			<li><a href="https://github.com/waynezxcv" target = "blank"> 我的GitHub </a></li>
 			<li><a href="http://weibo.com/p/1005052548524602/home?from=page_100505&mod=TAB&is_all=1#place" target = "blank"> 我的微博 </a></li>
 		</u1>
-		<u1 class = "nav navbar-nav navbar-right">
-			{% if current_user.is_authenticated  %}
-				<li> <a href = " {{ url_for('auth.logout') }}"> hi,{{ current_user }} </a></li>
-				<li> <a href = " {{ url_for('admin.post') }}"> 发布文章 </a></li>
-			{% else %}
-				<li> <a href = " {{ url_for('auth.login') }}"> 登录 </a></li>
-			{% endif %}	
-		</u1>
 	</div>
 </div>
 </div>
