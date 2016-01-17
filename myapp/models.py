@@ -31,9 +31,6 @@ class Role(db.Model):
 		db.session.add(user)
 		db.session.commit()
 
-
-
-
 	def __repr__(self):
 		return self.name
 
@@ -90,6 +87,15 @@ class Post(db.Model):
 	like = db.Column(db.Integer,default = 0)
 	tag_id = db.Column(db.Integer,db.ForeignKey('tags.id'))
 	comments  = db.relationship('Comment',backref = 'post')
+
+
+	@property
+	def body(self):
+		return self.body
+
+	@body.setter
+	def body(self,body):
+		self.summary = body[:50]
 
 	@property
 	def commentsCount(self):
