@@ -9,9 +9,8 @@ from datetime import datetime
 from flask import render_template,session,redirect,url_for,request
 from main import main
 from flask.ext.login import login_required
-from models import Post,Tag
-
-
+from models import Post,Tag,Comment
+from forms import CommentForm
 
 @main.route('/',methods = ['GET','POST'])
 def index():
@@ -45,24 +44,36 @@ def tagname(tagname):
 	return render_template('tags.html',tags = tags),200
 
 
-@main.route('/like/<postid>')
-def like():
-	print 'like'
-	post = Post.query.filter_by(id = postid).first()
-	if post is not None:
-		post.like = post.like + 1
-		post.savePost()
+# @main.route('/like/<postid>',methods = ['GET','POST'])
+# def like(postid):
+# 	print 'like'
+# 	post = Post.query.filter_by(id = postid).first()
+# 	if post is not None:
+# 		post.like = post.like + 1
+# 		post.savePost()
+# 	redirectURL = url_for('.index',postid = postid)
+# 	return redirect(redirectURL + '#%s' % postid)
+	
 
-
-@main.route('/detail/<postid>')
+@main.route('/detail/<int:postid>',methods = ['GET','POST'])
 def detail(postid):
 	post = Post.query.filter_by(id = postid).first()
-	if post is not None:
-		return render_template('detail.html',post = post,commentsCount = len(post.comments)),200
-	return render_template('index.html'),200
+	form = CommentForm()
+	if form.validate_on_submit():
+		comment = Comment(content = form.content.data,post_id = postid,user_id = 3)
+		comment.saveComment()
+		redirectURL = url_for('.detail',postid = postid)
+		return redirect(redirectURL + '#respond')
+	return render_template('detail.html',post = post,form = form),200
 
 
-# @main.route('/comment/<postid>')
-# def comment(postid):
+@main.route('/list',methods = ['GET','POST'])
+def list():
+	page = request.args.get('page',1,type = int)
+	pagination = Post.query.order_by(Post.id.desc()).paginate(page,per_page = 20,error_out = False)
+	posts = pagination.items
+	return render_template('list.html',posts = posts,pagination = pagination),200	
+
+
 
 

@@ -1,0 +1,21 @@
+
+{% extends "basemain.html" %}
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}
+
+
+{% block page_content %}
+<div id="content" class="site-content">
+<main id="main" class="site-main posts-loop" role="main"> 
+{% import 'macros.html' as macros %}
+{% for post in posts %}
+{{ macros.render_list(post) }}
+{% endfor %}
+
+<!-- 分页 -->
+</main> 
+     {{ macros.render_pagination('main.list',pagination) }}
+</div> 
+{% endblock %}

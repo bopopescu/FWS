@@ -11,7 +11,7 @@ from flask.ext.login import logout_user,login_required,login_user
 def signup():
 	form = AdminSign()
 	if form.validate_on_submit():
-		user = User(username = form.username.data,password = form.password.data)
+		user = User(username = form.username.data,password = form.password.data,avtar = 'https://avatars0.githubusercontent.com/u/8408918?v=3&s=460')
 		user.saveUser()
 		return redirect(url_for('auth.login')),200
 	return render_template('auth/signup.html',form = form),200
