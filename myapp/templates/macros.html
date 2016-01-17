@@ -2,29 +2,25 @@
 {# 渲染文章列表 #}
 {% macro render_article(article) %}
 <!-- 文章 -->
-<html>
- <head></head>
- <body>
   <article id="post-62" class="Article post-62 post type-post status-publish format-image has-post-thumbnail sticky hentry category-26 tag-28 post_format-post-format-image"> 
    <!-- 标题 --> 
-   <h3 class="Article__title"> <a href="http://demo.20theme.com/hacker/archives/62" rel="bookmark"> <span> {{ article.title }}</span> </a> </h3> 
+   <h3 class="Article__title"> <a href="/detail/{{ article.id }}" rel="bookmark"> <span> {{ article.title }}</span> </a> </h3> 
    <!-- 日期 --> 
    <div class="Article__top-meta"> 
     <span><a><time> {{ article.timestamp }} </time></a></span> 
    </div> 
    <!-- 图片 --> 
    {% if article.cover %} 
-
-   <div class="featured-media"> 
-    <img width="700" height="359" src="{{article.cover}}" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="封面" srcset="" sizes="(max-width: 720px) calc(100vw - 20px), 700px" /> 
-   </div> 
+   <div class="Extendfull featured-media">
+			<div class="Extendfull__inner">
+				  <img width="1920" height="984" src="{{article.cover}}" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="封面" srcset="" sizes="(max-width: 1920) calc(100vw - 20px), 700px" /> 
+			</div>
+	</div>
    <!-- END .featured-media --> 
    {% endif %} 
    <!-- 正文 --> 
    <div class="Article__excerpt">
      {{ article.summary |safe }} 
-	<!-- <a href="http://demo.20theme.com/hacker/archives/48#more-48" class="more-link">继续阅读<span class="screen-reader-text"> “相忘于江湖”</span></a> -->
-
    </div> 
 
 
@@ -37,17 +33,15 @@
     <!-- END .pull-left --> 
     <div class="Article__meta pull-right"> 
      <!-- 点赞 --> 
-     <span><a href="/like/{{article.id}} " class="js-rating" data-post="62"><i class="icon-heart"></i><span class="js-count"> {{ article.like }}</span></a></span> 
+     <span><a href="/like/{{article.id}} "class="js-rating" data-post="62"><i class="icon-heart"></i><span class="js-count"> {{ article.like }}</span></a></span> 
      <!-- 评论 --> 
-     <span><i class="icon-comments"></i><span><a href="http://demo.20theme.com/hacker/archives/62#respond"> {{ article.comment }}</a></span></span> 
+     <span><i class="icon-comments"></i><span><a href="http://demo.20theme.com/hacker/archives/62#respond"> {{ article.commentsCount }}</a></span></span> 
     </div> 
     <!-- END .pull-right --> 
    </footer> 
    <!-- END .Article__footer --> 
   </article> 
   <!-- END .Article --> 
- </body>
-</html>
 {% endmacro %}
 
 
@@ -63,4 +57,76 @@
      </nav> 
      <!-- END .Pagination --> 
 {% endmacro %}
+
+
+{# 渲染评论 #}
+{% macro render_comments(comments,commentsCount) %}
+<html>
+ <head></head>
+ <body>
+  <div id="comments" class="Comments-area"> 
+
+
+<!-- 是否有评论 -->
+   <header class="Comments-area__header"> 
+    {% if commentsCount == 0 %}
+    <h3 class="Comments-area__title">  暂无评论 </h3> 
+    {% else %}
+    <h3 class="Comments-area__title"> {{ commentsCount }}</h3> 
+    {% endif %}
+
+   </header> 
+   <!-- END .Comments-area__header --> 
+
+<!-- 评论列表 -->
+   <ul class="Comments-list"> 
+    <!-- commment --> 
+
+{% for comment in comments %}
+<li id="comment-10" class="comment even thread-even depth-1 Comment"> 
+     <div class="Comment__media"> 
+      <!-- 评论用户头像 -->
+      <img alt="" src="{{comment.user.avatar}}" srcset="" class="avatar avatar-48 photo" height="48" width="48" /> 
+     </div> 
+     <div class="Comment__body"> 
+      <div class="Comment__heading"> 
+       <div class="Comment__meta"> 
+        <!-- 用户名 -->
+        <div class="Comment__username"> {{ comment.user.username }}</div>
+        <!-- 评论时间  -->
+        <div class="Comment__date"> {{ comment.timestamp }} </div> 
+       </div> 
+       <div class="Comment__actions"> 
+        <span class="Comment__reply"><a rel="nofollow" class="comment-reply-link" href="http://demo.20theme.com/hacker/archives/62?replytocom=10#respond" onclick="return addComment.moveForm( &quot;comment-10&quot;, &quot;10&quot;, &quot;respond&quot;, &quot;62&quot; )" aria-label="回复给liu">回复</a></span> 
+       </div> 
+      </div> 
+      <!-- 评论内容 -->
+      <p>{{ comment.content }}</p> 
+     </div>
+</li> 
+{% endfor %}
+</ul> 
+
+   <!-- 发表评论 -->
+   <div id="respond" class="comment-respond"> 
+    <h3 id="reply-title" class="comment-reply-title">发表评论 <small><a rel="nofollow" id="cancel-comment-reply-link" href="/hacker/archives/62#respond" style="display:none;">取消回复</a></small></h3> 
+    <form action="http://demo.20theme.com/hacker/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate=""> 
+     <div class="comment-form__comment"> 
+      <textarea placeholder="输入你的评论." required="" name="comment" id="comment" rows="3"></textarea> 
+     </div>
+     <div class="comment-form__submit">
+      <button type="submit" name="submit" id="submit" class="btn btn-primary">发表评论</button> 
+      <input type="hidden" name="comment_post_ID" value="62" id="comment_post_ID" /> 
+      <input type="hidden" name="comment_parent" id="comment_parent" value="0" /> 
+     </div> 
+    </form> 
+   </div>
+   <!-- #respond --> 
+  </div>
+ </body>
+</html>
+{% endmacro %}
+
+
+
 

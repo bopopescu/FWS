@@ -1,0 +1,16 @@
+
+{% extends "basemain.html" %}
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}
+
+
+
+{% block page_content %}
+<div id="content" class="site-content">
+<main id="main" class="site-main posts-loop" role="main"> 
+{% import 'macros.html' as macros %}
+{{ macros.render_article(post) }}
+{{ macros.render_comments(post.comments,commentsCount) }}
+{% endblock %}

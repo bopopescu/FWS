@@ -72,13 +72,16 @@ img.emoji {
     <!-- END .site-header --> 
   <header id="masthead" class="site-header" role="banner"> 
    <div class="site-branding"> 
-    <p class="site-title"><a href="http://demo.20theme.com/hacker/" rel="home">Waynezxcv</a></p> 
-    <p class="site-description">Waynezxcv的博客</p> 
+    <p class="site-title"><a href=" {{url_for('main.index') }}" rel="home">Waynezxcv</a></p> 
    </div> 
+           <p style="text-align:center; color:rgb(80,80,80)">Hi, I’m waynezxcv. I’m a iOS and python developer live in Shenzhen.</p> 
+
+
+
    <nav id="site-navigation" class="main-navigation" role="navigation"> 
     <div class="menu-primary-menu-container">
      <ul id="primary-menu" class="menu">
-      <li id="menu-item-10" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-10"><a href="http://demo.20theme.com/hacker/">博客</a></li> 
+      <li id="menu-item-10" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-10"><a href="{{ url_for('main.index') }}">博客</a></li> 
       <li id="menu-item-28" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href=" {{ url_for('main.tags') }}">标签</a></li> 
       <li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href=" {{ url_for( 'main.about' ) }}">关于</a></li> 
      </ul>

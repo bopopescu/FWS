@@ -26,7 +26,10 @@ def login():
 		if user is not None and user.verify_password(form.password.data):
 			#成功
 			login_user(user,form.remember_me.data)
-			return redirect(url_for('admin.post'))
+			if user.role.id == 1:
+				return redirect(url_for('admin.post'))
+			else:
+				return redirect(url_for('main.index'))
 	return render_template('auth/login.html',form = form),200
 
 

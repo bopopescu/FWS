@@ -21,15 +21,21 @@ class Role(db.Model):
 	name = db.Column(db.String(64),unique = True)
 	#第一个参数：关系的另一端是哪个模型
 	#第二个参数：backref向User模型中添加一个role属性
-	# users = db.relationship('User',backref = 'role')
+	users = db.relationship('User',backref = 'role')
 	def __repr__(self):
 		return self.name
+
+
 
 class User(UserMixin,db.Model):
 	__tablename__ = 'users'
 	id = db.Column(db.Integer,primary_key = True)
 	username = db.Column(db.String(64),unique = True,index = True)
 	password_hash = db.Column(db.String(128))
+	comments  = db.relationship('Comment',backref = 'user')
+	role_id = db.Column(db.Integer,db.ForeignKey('roles.id'),default = 2)
+	avtar = db.Column(db.Text)
+
 	@property
 	def password(self):
 		raise AttributedError('password is not a readable attribute')
@@ -64,10 +70,12 @@ class Post(db.Model):
 	body = db.Column(db.Text)
 	timestamp = db.Column(db.DateTime,index = True,default = datetime.now())
 	like = db.Column(db.Integer,default = 0)
-	comment = db.Column(db.Integer,default = 0)
 	tag_id = db.Column(db.Integer,db.ForeignKey('tags.id'))
+	comments  = db.relationship('Comment',backref = 'post')
 
-
+	@property
+	def commentsCount(self):
+		return len(self.comments)
 
 	def savePost(self):
 		db.session.add(self)
@@ -75,6 +83,23 @@ class Post(db.Model):
 
 	def __repr__(self):
 		return self
+
+
+
+#评论模型
+class Comment(db.Model):
+	__tablename__ = 'comments'
+	id = db.Column(db.Integer,primary_key = True)
+	timestamp = db.Column(db.DateTime,index = True,default = datetime.now())
+	content = db.Column(db.Text)
+	post_id = db.Column(db.Integer,db.ForeignKey('posts.id'))
+	user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+
+
+	def saveComment(self):
+		db.session.add(self)
+		db.session.commit()
+
 
 
 #标签模型

@@ -53,3 +53,16 @@ def like():
 		post.like = post.like + 1
 		post.savePost()
 
+
+@main.route('/detail/<postid>')
+def detail(postid):
+	post = Post.query.filter_by(id = postid).first()
+	if post is not None:
+		return render_template('detail.html',post = post,commentsCount = len(post.comments)),200
+	return render_template('index.html'),200
+
+
+# @main.route('/comment/<postid>')
+# def comment(postid):
+
+
