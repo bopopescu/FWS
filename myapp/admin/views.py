@@ -21,8 +21,7 @@ def post():
 		post = Post(title = form.title.data.encode('utf-8'),
 					tag_id = tag.id,
 					body = form.body.data.encode('utf-8'),
-					cover = form.cover.data.encode('utf-8'),
-					summary = form.body.data.encode('utf-8'))
+					cover = form.cover.data.encode('utf-8'))
 		post.savePost()
 		return render_template('admin/sucess.html'),200
 	return render_template('admin/post.html',form = form),200
