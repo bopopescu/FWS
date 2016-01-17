@@ -31,6 +31,8 @@ def tags():
 	tags = Tag.query.order_by(Tag.id.desc()).all()
 	return render_template('tags.html',tags = tags),200
 
+
+
 @main.route('/tagname/<tagname>',methods = ['GET','POST'])
 def tagname(tagname):
 	tag =  Tag.query.filter_by(name = tagname).first()
@@ -41,3 +43,13 @@ def tagname(tagname):
 		posts = pagination.items
 		return render_template('index.html',posts = posts,pagination = pagination),200
 	return render_template('tags.html',tags = tags),200
+
+
+@main.route('/like/<postid>')
+def like():
+	print 'like'
+	post = Post.query.filter_by(id = postid).first()
+	if post is not None:
+		post.like = post.like + 1
+		post.savePost()
+

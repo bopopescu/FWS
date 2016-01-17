@@ -1,0 +1,66 @@
+
+{# 渲染文章列表 #}
+{% macro render_article(article) %}
+<!-- 文章 -->
+<html>
+ <head></head>
+ <body>
+  <article id="post-62" class="Article post-62 post type-post status-publish format-image has-post-thumbnail sticky hentry category-26 tag-28 post_format-post-format-image"> 
+   <!-- 标题 --> 
+   <h3 class="Article__title"> <a href="http://demo.20theme.com/hacker/archives/62" rel="bookmark"> <span> {{ article.title }}</span> </a> </h3> 
+   <!-- 日期 --> 
+   <div class="Article__top-meta"> 
+    <span><a><time> {{ article.timestamp }} </time></a></span> 
+   </div> 
+   <!-- 图片 --> 
+   {% if article.cover %} 
+
+   <div class="featured-media"> 
+    <img width="700" height="359" src="{{article.cover}}" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="封面" srcset="" sizes="(max-width: 720px) calc(100vw - 20px), 700px" /> 
+   </div> 
+   <!-- END .featured-media --> 
+   {% endif %} 
+   <!-- 正文 --> 
+   <div class="Article__excerpt">
+     {{ article.summary |safe }} 
+	<!-- <a href="http://demo.20theme.com/hacker/archives/48#more-48" class="more-link">继续阅读<span class="screen-reader-text"> “相忘于江湖”</span></a> -->
+
+   </div> 
+
+
+   <!-- END .Article__excerpt --> 
+   <footer class="Article__footer"> 
+    <div class="Article__meta pull-left"> 
+     <!-- 标签 --> 
+     <span class="post-tags"><i class="icon-tags"></i><a href="/tagname/{{article.tag.name}}" rel="tag"> {{ article.tag.name }}</a></span> 
+    </div> 
+    <!-- END .pull-left --> 
+    <div class="Article__meta pull-right"> 
+     <!-- 点赞 --> 
+     <span><a href="/like/{{article.id}} " class="js-rating" data-post="62"><i class="icon-heart"></i><span class="js-count"> {{ article.like }}</span></a></span> 
+     <!-- 评论 --> 
+     <span><i class="icon-comments"></i><span><a href="http://demo.20theme.com/hacker/archives/62#respond"> {{ article.comment }}</a></span></span> 
+    </div> 
+    <!-- END .pull-right --> 
+   </footer> 
+   <!-- END .Article__footer --> 
+  </article> 
+  <!-- END .Article --> 
+ </body>
+</html>
+{% endmacro %}
+
+
+{# 渲染分页 #}
+{% macro render_pagination(endpoint,pagination) %}
+     <nav class="Pagination"> 
+      {% if pagination.has_prev %}
+      <a href="{{ url_for(endpoint,page = pagination.page - 1) }}" class="Pagination__next">上一页</a> 
+      {% endif %}
+      {% if pagination.has_next %}
+      <a href="{{ url_for(endpoint,page = pagination.page + 1) }}" class="Pagination__next">下一页</a> 
+      {% endif %}
+     </nav> 
+     <!-- END .Pagination --> 
+{% endmacro %}
+
