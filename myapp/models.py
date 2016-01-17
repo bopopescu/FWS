@@ -22,6 +22,18 @@ class Role(db.Model):
 	#第一个参数：关系的另一端是哪个模型
 	#第二个参数：backref向User模型中添加一个role属性
 	users = db.relationship('User',backref = 'role')
+
+	@staticmethod
+	def insert_roles():
+		admin = Role(id = 1,name = 'Administrator')
+		user = Role(id = 2,name = 'User')
+		db.session.add(admin)
+		db.session.add(user)
+		db.session.commit()
+
+
+
+
 	def __repr__(self):
 		return self.name
 
@@ -53,11 +65,17 @@ class User(UserMixin,db.Model):
 		db.session.add(self)
 		db.session.commit()
 
+	#类方法
+	@staticmethod
+	def add_admin():
+		adminwaye = User(username = 'adminwayne',password = 'shihoujian1',avtar = '',role_id = 1)
+		db.session.add(adminwaye)
+		db.session.commit()
+
+
 	#实现flask-login的方法或者集成Usermixin类
 	def __repr__(self):
 		return self.username
-
-
 
 #文章模型
 class Post(db.Model):
@@ -99,7 +117,6 @@ class Comment(db.Model):
 	def saveComment(self):
 		db.session.add(self)
 		db.session.commit()
-
 
 
 #标签模型
