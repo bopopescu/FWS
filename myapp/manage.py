@@ -41,4 +41,4 @@ manager.add_command('db',MigrateCommand)
 
 
 if __name__ == '__main__':
-	manager.run(host = '120.24.46.77',port = 80)
+	manager.run()
