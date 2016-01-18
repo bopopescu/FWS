@@ -12,8 +12,6 @@ from flask.ext.migrate import Migrate,MigrateCommand
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)
-server = Server(host="120.24.46.77", port=5000)
-manager.server = server
 migrate = Migrate(app,db)
 
 
