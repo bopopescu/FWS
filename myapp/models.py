@@ -95,7 +95,7 @@ class Post(db.Model):
 
 	@body.setter
 	def body(self,body):
-		self.summary = body[:50]
+		self.summary = body
 
 	@property
 	def commentsCount(self):
