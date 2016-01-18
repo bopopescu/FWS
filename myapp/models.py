@@ -66,7 +66,9 @@ class User(UserMixin,db.Model):
 	@staticmethod
 	def add_admin():
 		adminwaye = User(username = 'adminwayne',password = 'shihoujian1',avtar = '',role_id = 1)
+		stranger = User(username = '游客',password = '',avtar = 'http://attach.bbs.miui.com/forum/201111/02/134116q930mdhdn9nhq9f9.jpg',role_id = 2)
 		db.session.add(adminwaye)
+		db.session.add(stranger)
 		db.session.commit()
 
 
@@ -87,15 +89,6 @@ class Post(db.Model):
 	like = db.Column(db.Integer,default = 0)
 	tag_id = db.Column(db.Integer,db.ForeignKey('tags.id'))
 	comments  = db.relationship('Comment',backref = 'post')
-
-
-	@property
-	def body(self):
-		return self.body
-
-	@body.setter
-	def body(self,body):
-		self.summary = body
 
 	@property
 	def commentsCount(self):

@@ -13,6 +13,7 @@ class Postform(Form):
 	body = TextAreaField(u'内容',validators = [Required()])
 	tag = StringField(u'标签',validators = [Required()])
 	cover = StringField(u'封面')
+	summary = TextAreaField(u'简介',validators = [Required()])
 	submit = SubmitField(u'发布')
 
 

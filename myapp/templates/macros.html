@@ -18,9 +18,10 @@
 	</div>
    <!-- END .featured-media --> 
    {% endif %} 
-   <!-- 正文 --> 
+   <!-- 内容提要 --> 
    <div class="Article__excerpt">
      {{ article.summary |safe }} 
+     <a href="/detail/{{ article.id }}#bodys" class="more-link">继续阅读</a>
    </div> 
 
    <!-- END .Article__excerpt --> 
@@ -56,8 +57,6 @@
      </nav> 
      <!-- END .Pagination --> 
 {% endmacro %}
-
-
 
 
 {# 文章列表 #}
