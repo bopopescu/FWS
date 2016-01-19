@@ -25,3 +25,9 @@ def post():
 		post.savePost()
 		return render_template('admin/sucess.html'),200
 	return render_template('admin/post.html',form = form),200
+
+
+@admin.route('/manage',methods = ['GET','POST'])
+@login_required
+def manage():
+	return render_template('admin/manage.html'),200
