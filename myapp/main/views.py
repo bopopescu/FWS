@@ -60,7 +60,7 @@ def detail(postid):
 	post = Post.query.filter_by(id = postid).first()
 	form = CommentForm()
 	if form.validate_on_submit():
-		comment = Comment(content = form.content.data,post_id = postid,user_id = 2)
+		comment = Comment(content = form.content.data,post_id = postid,user_id = 2,timestamp = datetime.now())
 		comment.saveComment()
 		redirectURL = url_for('.detail',postid = postid)
 		return redirect(redirectURL + '#respond')
