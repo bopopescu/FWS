@@ -99,7 +99,10 @@ class Post(db.Model):
 		db.session.commit()
 
 	def deletePost(self):
-
+		tags = Tag.query.filter_by(id = self.tag_id).all()
+		if len(tags) == 1:
+			tag = tags[0]
+			tag.deleteTag()
 		
 		db.session.delete(self)
 		db.session.commit()
@@ -130,6 +133,10 @@ class Tag(db.Model):
 	id = db.Column(db.Integer,primary_key = True)
 	name = db.Column(db.Text,index = True)
 	posts = db.relationship('Post',backref = 'tag')
+
+	def deleteTag(self):
+		db.session.delete(self)
+		db.session.commit()
 
 	def saveTag(self):
 		db.session.add(self)
