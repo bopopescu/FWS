@@ -16,4 +16,3 @@ class Postform(Form):
 	summary = TextAreaField(u'简介',validators = [Required()])
 	submit = SubmitField(u'发布')
 
-

@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{%block title %} Waynezxcv的博客{% endblock %}
+{% block page_content %}
+
+<div class = "body">
+
+<div class = "page-header">
+	<h1  content="text/html; charset=utf-8" > 管理列表 </h1>
+</div>
+
+<div>
+
+<!-- 表单 -->
+	<ul>
+	{% for post in posts %}
+	<li> {{ post.title }} <a href="/admin/manage/delete/{{ post.id }}" class="btn btn-warn btn-sm btn-delete-post" id="{{ post.id }}">删除</a>
+	</li>
+	{% endfor %} 
+	</ul>
+</div>
+{% endblock %}
