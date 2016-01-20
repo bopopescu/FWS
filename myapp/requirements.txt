@@ -9,7 +9,6 @@ Flask-WTF==0.12
 Jinja2==2.8
 mysql-connector-python==2.0.4
 MySQL-python==1.2.5
-SQLAlchemy==1.0.9
 supervisor==3.2.0
 Twisted==15.5.0
 visitor==0.1.2
@@ -20,7 +19,6 @@ WTForms==2.1
 Mako==1.0.0
 Markdown==2.5.1
 MarkupSafe==0.23
-SQLAlchemy==0.9.8
 html5lib==1.0b3
 itsdangerous==0.24
 six==1.8.0

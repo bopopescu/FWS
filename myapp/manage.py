@@ -4,20 +4,21 @@
 
 
 import os
+import sys
 from __init__ import create_app,db
 from models import User,Role,Post
 from flask.ext.script import Manager,Shell,Server
 from flask.ext.migrate import Migrate,MigrateCommand
 
 
-app = create_app(os.getenv('FLASK_CONFIG') or 'default')
-manager = Manager(app)
-migrate = Migrate(app,db)
+application = create_app(os.getenv('FLASK_CONFIG') or 'default')
+manager = Manager(application)
+migrate = Migrate(application,db)
 
 
 #创建shell命令上下文。。这里的app，db等无需手动在shell中import
 def make_shell_context():
-	return dict(app = app,db = db,User = User,Role = Role,Post = Post)
+	return dict(application = application,db = db,User = User,Role = Role,Post = Post)
 
 @manager.command
 def deploy():
