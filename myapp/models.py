@@ -99,6 +99,8 @@ class Post(db.Model):
 		db.session.commit()
 
 	def deletePost(self):
+
+		
 		db.session.delete(self)
 		db.session.commit()
 

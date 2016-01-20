@@ -21,11 +21,11 @@
    </div> 
    <!-- 图片 --> 
    {% if post.cover %} 
-   <div class="Extendfull featured-media">
-      <div class="Extendfull__inner">
-          <img width="900" height="700" src="{{post.cover}}"  class="attachment-full size-full wp-post-image" alt="封面" srcset="{{post.cover}}" sizes="100vw"/> 
-      </div>
+   <div class="featured-media">
+          <img width="900" height="700" src="{{post.cover}}"  class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="封面" srcset="{{post.cover}}" sizes="max-width: 720px) calc(100vw - 20px), 700px"> 
   </div>
+
+
    <!-- END .featured-media --> 
    {% endif %} 
    <!-- 正文 --> 
