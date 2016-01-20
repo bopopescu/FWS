@@ -98,6 +98,10 @@ class Post(db.Model):
 		db.session.add(self)
 		db.session.commit()
 
+	def deletePost(self):
+		db.session.delete(self)
+		db.session.commit()
+
 	def __repr__(self):
 		return self
 

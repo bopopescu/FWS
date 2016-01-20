@@ -25,3 +25,22 @@ def post():
 		post.savePost()
 		return render_template('admin/sucess.html'),200
 	return render_template('admin/post.html',form = form),200
+
+
+@admin.route('/manage',methods = ['GET','POST'])
+@login_required
+def manage():
+	posts = Post.query.order_by(Post.id.desc()).all()
+	return render_template('admin/manage.html',posts = posts),200
+
+
+@admin.route('/manage/delete/<postid>',methods = ['GET','POST'])
+@login_required
+def delete(postid):
+	print 'delete : %s' % postid
+	post = Post.query.filter_by(id = postid).first()
+	if post is not None:
+		post.deletePost()
+		return render_template('admin/sucess.html'),200
+	return redirect(url_for('admin.manage')),200
+	
