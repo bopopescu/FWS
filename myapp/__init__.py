@@ -8,6 +8,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from config import config
 from flask.ext.login import LoginManager
 
+
 #初始化bootstrap
 bootstrap = Bootstrap()
 #初始化Mail
@@ -48,5 +49,8 @@ def create_app(config_name):
 
 	from admin import admin as admin_blueprint
 	app.register_blueprint(admin_blueprint,url_prefix = '/admin')
+
+	from api_1_0 import api_1_0_bp as api_1_0_blueprint
+	app.register_blueprint(api_1_0_blueprint,url_prefix = '/api_1_0')
 
 	return app
