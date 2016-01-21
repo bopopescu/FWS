@@ -13,11 +13,10 @@
 </div>
 
 <div>
-
 <!-- 表单 -->
 	<ul>
 	{% for post in posts %}
-	<li> {{ post.title }} <a href="/admin/manage/delete/{{ post.id }}" class="btn btn-warn btn-sm btn-delete-post" id="{{ post.id }}">删除</a>
+	<li> {{ post.title }} <a href="/admin/manage/delete/{{ post.id }}" class="btn btn-warn btn-sm btn-delete-post" id="{{ post.id }}">删除</a> <a href="/admin/manage/edit/{{ post.id }}" class="btn btn-warn btn-sm btn-delete-post" id="{{ post.id }}">编辑</a>
 	</li>
 	{% endfor %} 
 	</ul>

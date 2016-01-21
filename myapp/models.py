@@ -110,8 +110,6 @@ class Post(db.Model):
 	def __repr__(self):
 		return self
 
-
-
 #评论模型
 class Comment(db.Model):
 	__tablename__ = 'comments'
