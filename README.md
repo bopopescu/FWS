@@ -1,2 +1,2 @@
 # Waynezxcv
-Nginx + uWSGI + Flask + MySQL
+Nginx + uWSGI + Flask + MySQL.
